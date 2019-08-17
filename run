@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Start... "`date`
+scrapy crawl ant -s DEPTH_LIMIT=100 -a domain=mk.ru -a section="U10S10" -a outdir="/tmp"
+echo "End... "`date`

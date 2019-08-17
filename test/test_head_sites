@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd ..
+rm -f test/test_head_sites.txt
+rm -f test/rubric.txt.*
+for site in $(cat test/sites.txt); do
+    echo  "Testing "$site
+    fname=`echo $site | sed -r 's/\//_/g'`
+    scrapy crawl ant -s CLOSESPIDER_PAGECOUNT=1 -a domain=$site -a section=$fname -a outdir=test
+    cat test/rubric.txt.$fname >> test/test_head_sites.txt
+    rm test/rubric.txt.$fname
+done
+cd test
